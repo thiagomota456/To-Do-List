@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="text-align: center;" color="primary">
+      To-do list
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    
+    <ion-toolbar style="border: 1px solid blue;">
+      <ion-buttons slot="primary">
+        <ion-button (click)="Additem()">
+          <ion-icon name="add-circle-outline" color="primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-input  name="currentTask" [(ngModel)]="currentTask" type="text" placeholder="Type the task"></ion-input>
+    </ion-toolbar>
+
+  </div>
+
+  <div class="ion-padding">
+    <!--No complet tasks-->
+    <div *ngFor="let task of tasks">
+      <div *ngIf="task.status != true">
+        <div style="padding: 0px 10px 5px 10px;">
+          <ion-checkbox slot="end" [(ngModel)]="task.status"></ion-checkbox>
+          <a style="padding-left: 1em;">
+            {{task.title}}
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!--Complet tasks-->
+    <div *ngFor="let task of tasks">
+      <div *ngIf="task.status != false">
+        <div style="padding: 0px 10px 5px 10px;">
+          <ion-checkbox slot="end" [(ngModel)]="task.status"></ion-checkbox>
+          <a style="padding-left: 1em; text-decoration: line-through;">
+            {{task.title}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</ion-content>
